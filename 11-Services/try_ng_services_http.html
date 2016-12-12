@@ -23,7 +23,7 @@
     <script>
         var app = angular.module('myApp', []);
         app.controller('myCtrl', function($scope, $http) {
-            $http.get("welcome.htm").then(function (response) {
+            $http.get("http://127.0.0.1:5000/angular/welcome.htm").then(function (response) {
             $scope.myWelcome = response.data;
             });
         });
