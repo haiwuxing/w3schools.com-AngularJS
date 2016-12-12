@@ -23,9 +23,13 @@
     <script>
         var app = angular.module('myApp', []);
         app.controller('myCtrl', function ($scope, $http) {
-            $http.get("http://127.0.0.1:5000/angular/welcome.htm")
-                .then(function (response) {
-                    $scope.myWelcome = response.data;
+            $http({
+                method: "GET",
+                url: "http://127.0.0.1:5000/angular/welcome.htm"
+            }).then(function mySucces(response) {
+                $scope.myWelcome = response.data;
+            }, function myError(response) {
+                $scope.myWelcome = response.statusText;
             });
         });
     </script>

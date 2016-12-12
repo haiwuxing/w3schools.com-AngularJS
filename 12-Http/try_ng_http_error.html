@@ -9,23 +9,24 @@
 <body>
     <div ng-app="myApp" ng-controller="myCtrl">
 
-        <p>Today's welcome message is:</p>
-
-        <h1>{{myWelcome}}</h1>
+        <p>Content: {{content}}</p>
 
     </div>
 
     <p>
-        The $http service requests a page on the server, and the response is set
-         as the value of the "myWelcome" variable.
+        The $http service executes different functions on success and failure.
     </p>
 
     <script>
         var app = angular.module('myApp', []);
         app.controller('myCtrl', function ($scope, $http) {
-            $http.get("http://127.0.0.1:5000/angular/welcome.htm")
-                .then(function (response) {
-                    $scope.myWelcome = response.data;
+            $http.get("wrongfilename.htm")
+            .then(function (response) {
+                //First function handles success
+                $scope.content = response.data;
+            }, function (response) {
+                //Second function handles error
+                $scope.content = "Something went wrong";
             });
         });
     </script>
